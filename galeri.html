@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Edukasi TJKT [Cyber Light Mode]</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Cyber Light Palette */
+            --bg-main: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(241, 245, 249, 0.95);
+            --border-color: rgba(0, 136, 204, 0.25);
+            
+            --accent-primary: #0088cc;   /* Deep Neon Cyan */
+            --accent-secondary: #cc0044; /* Neon Pink/Magenta */
+            --accent-tertiary: #b38600;  /* Cyber Yellow / Gold */
+            --accent-glow: rgba(0, 0, 0, 0.05);
+            
+            --text-title: #0f172a;
+            --text-body: #475569;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-title); 
+            line-height: 1.6; 
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 136, 204, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(0, 136, 204, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 136, 204, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+        }
+
+        /* Navigasi Navbar Modern */
+        nav { 
+            background: #ffffff; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 50px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            height: 60px;
+        }
+
+        /* Logo / Brand */
+        nav .nav-brand {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        nav .nav-brand i {
+            background: var(--accent-primary);
+            color: #ffffff;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        nav .nav-brand span {
+            color: var(--accent-primary);
+        }
+
+        /* Tombol Garis Tiga (Hamburger Menu) */
+        .menu-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-title);
+            font-size: 1.2rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        /* Menu Dropdown Navigasi Sesuai Gambar */
+        nav .nav-links {
+            display: none; /* Sembunyi secara default */
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            width: 220px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 10px;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        /* Class untuk menampilkan menu saat diklik */
+        nav .nav-links.active {
+            display: flex;
+        }
+
+        nav .nav-links a { 
+            font-family: 'Rajdhani', sans-serif;
+            color: #475569; 
+            padding: 10px 14px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.95rem;
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            transition: all 0.2s ease; 
+            border-radius: 4px;
+        }
+
+        nav .nav-links a:hover { 
+            color: var(--accent-primary); 
+            background: rgba(0, 136, 204, 0.08);
+        }
+
+        nav .nav-links a.active {
+            color: #ffffff;
+            background: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        /* Header / Hero */
+        header { 
+            background: linear-gradient(180deg, rgba(0, 136, 204, 0.08) 0%, var(--bg-main) 100%); 
+            padding: 60px 20px 40px; 
+            text-align: center; 
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        header h1 { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2.8rem; 
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+            text-shadow: 0 0 5px var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p { 
+            font-size: 1.1rem; 
+            color: var(--text-body);
+            letter-spacing: 1px;
+        }
+
+        /* Layout Grid Utama (Multi-Kolom) */
+        .container { 
+            max-width: 1380px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 25px;
+            flex: 1;
+        }
+
+        /* Card & Widget styling */
+        .widget, .gallery-info {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 22px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .widget::before, .gallery-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 6px var(--accent-primary);
+        }
+
+        .widget h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tombol Filter Galeri */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: 10px 20px;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .btn { 
+            font-family: 'Share Tech Mono', monospace;
+            display: inline-flex; 
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px; 
+            background: transparent; 
+            color: var(--accent-primary); 
+            text-decoration: none; 
+            border: 1px solid var(--accent-primary);
+            border-radius: 2px; 
+            font-weight: 700; 
+            transition: all 0.3s ease; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .btn:hover { 
+            background: var(--accent-primary);
+            color: #ffffff;
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        /* Grid Galeri Utama */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 30px; 
+        }
+
+        .gallery-item { 
+            background: var(--bg-card); 
+            backdrop-filter: blur(10px);
+            border-radius: 4px; 
+            overflow: hidden; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            position: relative;
+        }
+
+        .gallery-item:hover { 
+            transform: translateY(-6px); 
+            border-color: var(--accent-secondary);
+            box-shadow: 0 6px 15px rgba(204, 0, 68, 0.15);
+        }
+
+        .gallery-item img { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.5s ease, filter 0.3s ease;
+            filter: grayscale(10%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .caption { 
+            font-family: 'Share Tech Mono', monospace;
+            padding: 12px; 
+            text-align: center; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            color: var(--text-title); 
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            letter-spacing: 1px;
+        }
+
+        /* Section Informasi Galeri */
+        .gallery-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .gallery-info-text { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+
+        .gallery-info-text h3 { 
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text-title); 
+            margin-bottom: 8px; 
+            font-size: 1.2rem; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .gallery-info-text p { 
+            color: var(--text-body); 
+            font-size: 0.9rem; 
+        }
+
+        .gallery-stats { 
+            display: flex; 
+            gap: 15px; 
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 18px;
+            border-radius: 2px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            min-width: 90px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .stat-card h4 { 
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-tertiary); 
+            font-size: 1.6rem; 
+            font-weight: 800;
+        }
+
+        .stat-card p { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem; 
+            color: var(--text-body); 
+            text-transform: uppercase;
+        }
+
+        /* Sidebar Elements */
+        .status-list {
+            list-style: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .status-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(0, 136, 204, 0.2);
+            color: var(--text-body);
+        }
+
+        .status-online {
+            color: #008744;
+            font-weight: bold;
+        }
+
+        .recent-list {
+            list-style: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .recent-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--text-body);
+        }
+
+        .recent-list i {
+            color: var(--accent-secondary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1100px) {
+            nav {
+                padding: 0 20px;
+            }
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-left, .sidebar-right {
+                order: 2;
+            }
+            .main-content {
+                order: 1;
+            }
+        }
+
+        /* Footer */
+        footer { 
+            font-family: 'Share Tech Mono', monospace;
+            text-align: center; 
+            padding: 25px; 
+            background: rgba(255, 255, 255, 0.95); 
+            color: var(--text-body); 
+            margin-top: auto; 
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi dengan Tombol Garis Tiga (Hamburger) -->
+    <nav>
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-cubes"></i> Lab <span>Network</span>
+        </a>
+
+        <!-- Tombol Garis Tiga di Ujung Kanan Atas -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Deretan Navigasi yang Masuk ke Dalam Garis Tiga -->
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a>
+            <a href="kegiatan.html"><i class="fa-solid fa-list-check"></i> Kegiatan</a>
+            <a href="galeri.html" class="active"><i class="fa-solid fa-image"></i> Galeri</a>
+            <a href="kontak.html"><i class="fa-solid fa-envelope"></i> Kontak</a>
+            <a href="tautan.html"><i class="fa-solid fa-link"></i> Tautan</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1><i class="fa-solid fa-images"></i> Gallery Archive</h1>
+        <p>[ MEDIA.DATABASE ] Dokumentasi Visual Praktikum &amp; Lab TJKT</p>
+    </header>
+
+    <div class="container">
+        
+        <aside class="sidebar-left">
+            <div class="widget">
+                <h3><i class="fa-solid fa-database"></i> Media Status</h3>
+                <ul class="status-list">
+                    <li><span>STORAGE</span> <span class="status-online">78% USED</span></li>
+                    <li><span>RESOLUTION</span> <span>1080p HD</span></li>
+                    <li><span>FORMAT</span> <span>JPEG/RAW</span></li>
+                    <li><span>ACCESS</span> <span class="status-online">PUBLIC</span></li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3><i class="fa-solid fa-tags"></i> Tag Populer</h3>
+                <ul class="status-list">
+                    <li><span>#Crimping</span> <span>12 Photos</span></li>
+                    <li><span>#Splicing</span> <span>8 Photos</span></li>
+                    <li><span>#RouterOS</span> <span>15 Photos</span></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> Semua Foto</button>
+                <button class="filter-btn" data-filter="lan"><i class="fa-solid fa-network-wired"></i> Jaringan LAN</button>
+                <button class="filter-btn" data-filter="fiber"><i class="fa-solid fa-bolt"></i> Serat Optik</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="lan">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Praktikum Cable Crimping">
+                    <div class="caption">Praktikum Cable Crimping</div>
+                </div>
+
+                <div class="gallery-item" data-category="lan">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Konfigurasi Network Router">
+                    <div class="caption">Konfigurasi Network Router</div>
+                </div>
+
+                <div class="gallery-item" data-category="fiber">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Penyambungan Serat Optik">
+                    <div class="caption">Penyambungan Serat Optik</div>
+                </div>
+
+                <div class="gallery-item" data-category="lan">
+                    <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=80" alt="Instalasi Switch & Patch Panel">
+                    <div class="caption">Instalasi Switch &amp; Patch Panel</div>
+                </div>
+
+                <div class="gallery-item" data-category="fiber">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Pengukuran OTDR Serat Optik">
+                    <div class="caption">Pengukuran OTDR Serat Optik</div>
+                </div>
+
+                <div class="gallery-item" data-category="lan">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Troubleshooting Jaringan Komputer">
+                    <div class="caption">Troubleshooting Jaringan</div>
+                </div>
+            </div>
+
+            <div class="gallery-info">
+                <div class="gallery-info-text">
+                    <h3><i class="fa-solid fa-camera" style="color: var(--accent-primary);"></i> Arsip Dokumentasi Kegiatan</h3>
+                    <p>Dokumentasi ini diambil langsung pada saat kegiatan praktik pembelajaran di laboratorium TJKT untuk memberikan gambaran nyata suasana belajar siswa.</p>
+                </div>
+                <div class="gallery-stats">
+                    <div class="stat-card">
+                        <h4>6+</h4>
+                        <p>Album Praktikum</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>HD</h4>
+                        <p>Kualitas Foto</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Terbaru</h3>
+                <ul class="recent-list">
+                    <li><i class="fa-solid fa-image"></i> Splicing_FO_01.jpg</li>
+                    <li><i class="fa-solid fa-image"></i> RJ45_Straight_03.jpg</li>
+                    <li><i class="fa-solid fa-image"></i> Mikrotik_Setup.jpg</li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3><i class="fa-solid fa-circle-down"></i> Unduh Modul</h3>
+                <p style="font-size: 0.85rem; color: var(--text-body); margin-bottom: 12px;">Unduh panduan bergambar langkah-langkah crimping kabel UTP.</p>
+                <button class="btn" style="width:100%; justify-content:center; font-size:0.8rem;"><i class="fa-solid fa-download"></i> Download .PDF</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Edukasi TJKT // ALL_SYSTEMS_OPERATIONAL</p>
+    </footer>
+
+    <script>
+        // Toggle Garis 3 (Hamburger Menu)
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+        });
+
+        // Menutup menu jika klik di luar area menu
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Filter Galeri
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

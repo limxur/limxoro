@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tautan - Edukasi TJKT [Light Mode]</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quicksand:wght@300;500&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(14, 116, 144, 0.2);
+            
+            /* Clean Tech Palette */
+            --accent-primary: #0284c7;   /* Tech Blue */
+            --accent-secondary: #db2777; /* Neon Pink/Magenta Adjusted */
+            --accent-tertiary: #d97706;  /* Cyber Yellow/Amber */
+            --accent-glow: rgba(2, 132, 199, 0.25);
+            
+            --text-title: #0f172a;
+            --text-body: #475569;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-title); 
+            line-height: 1.6; 
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(2, 132, 199, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+        }
+
+        /* Header / Navbar Atas */
+        nav { 
+            background: #ffffff; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: #0284c7;
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: #0284c7;
+        }
+
+        /* Tombol Hamburger Garis 3 */
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #0f172a;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            border-color: #0284c7;
+            background: #f0f9ff;
+        }
+
+        /* Menu Navigasi Dropdown */
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 30px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 200px;
+            z-index: 1001;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu a { 
+            font-family: 'Rajdhani', sans-serif;
+            color: #475569; 
+            padding: 10px 16px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.95rem;
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            transition: all 0.2s ease; 
+            border-radius: 6px;
+        }
+
+        .nav-menu a:hover { 
+            color: var(--accent-primary); 
+            background: rgba(2, 132, 199, 0.08);
+        }
+
+        .nav-menu a.active {
+            color: #ffffff;
+            background: var(--accent-primary);
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+        }
+
+        .nav-menu a.active:hover {
+            background: #0274b3;
+        }
+
+        /* Banner Header Halaman Tautan */
+        header { 
+            background: linear-gradient(180deg, rgba(2, 132, 199, 0.08) 0%, var(--bg-main) 100%); 
+            padding: 40px 20px 20px; 
+            text-align: center; 
+            position: relative;
+        }
+
+        header h1 { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2.2rem; 
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-shadow: 0 0 5px rgba(2, 132, 199, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Layout Grid Utama */
+        .container { 
+            max-width: 1380px; 
+            margin: 30px auto 40px; 
+            padding: 0 20px; 
+            display: grid;
+            grid-template-columns: 260px 1fr 260px;
+            gap: 25px;
+        }
+
+        .section-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--text-title);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Widget Sidebar */
+        .widget { 
+            background: var(--bg-card); 
+            backdrop-filter: blur(10px);
+            padding: 20px; 
+            border-radius: 4px; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        .widget h3 { 
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text-title); 
+            font-size: 1.1rem; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Grid Tautan Sumber Belajar */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .link-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: var(--accent-secondary);
+            border-top-color: var(--accent-secondary);
+            box-shadow: 0 8px 25px rgba(219, 39, 119, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(2, 132, 199, 0.08);
+            color: var(--accent-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .card-header h3 { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem; 
+            color: var(--text-title); 
+            letter-spacing: 1px;
+        }
+
+        .link-card p { 
+            color: var(--text-body); 
+            font-size: 0.88rem; 
+            margin-bottom: 18px; 
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: 600;
+            font-size: 0.82rem;
+            border-radius: 2px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .btn-link:hover { 
+            background: var(--accent-primary); 
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Grid Software & Simulator */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-tertiary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.15);
+        }
+
+        .tool-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tool-info i {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            background: rgba(2, 132, 199, 0.08);
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-info h4 { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem; 
+            color: var(--text-title); 
+            letter-spacing: 1px;
+        }
+
+        .tool-card p { 
+            font-size: 0.85rem; 
+            color: var(--text-body); 
+            margin-bottom: 12px; 
+        }
+
+        .badge-free {
+            display: inline-block;
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--accent-primary);
+            border: 1px solid var(--border-color);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            width: fit-content;
+            text-transform: uppercase;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        .faq-item {
+            border-bottom: 1px dashed var(--border-color);
+            padding: 12px 0;
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+        
+        .faq-item h4 { 
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem; 
+            color: var(--text-title); 
+            margin-bottom: 4px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            letter-spacing: 1px;
+        }
+
+        .faq-item p { 
+            font-size: 0.88rem; 
+            color: var(--text-body); 
+            margin-left: 20px; 
+        }
+
+        /* Cyber List (Sidebar) */
+        .cyber-list {
+            list-style: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cyber-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(2, 132, 199, 0.15);
+            color: var(--text-body);
+        }
+
+        .cyber-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-left, .sidebar-right {
+                order: 2;
+            }
+            .main-content {
+                order: 1;
+            }
+        }
+
+        /* Footer */
+        footer { 
+            font-family: 'Share Tech Mono', monospace;
+            text-align: center; 
+            padding: 25px; 
+            background: rgba(255, 255, 255, 0.95); 
+            color: var(--text-body); 
+            margin-top: 50px; 
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi dengan Tombol Garis 3 -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="logo-text">Lab <span>Network</span></div>
+        </a>
+
+        <!-- Tombol Hamburger Garis 3 -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Menu Navigasi Dropdown -->
+        <div class="nav-menu" id="navMenu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a>
+            <a href="kegiatan.html"><i class="fa-solid fa-list-check"></i> Kegiatan</a>
+            <a href="galeri.html"><i class="fa-solid fa-images"></i> Galeri</a>
+            <a href="kontak.html"><i class="fa-solid fa-envelope"></i> Kontak</a>
+            <a href="tautan.html" class="active"><i class="fa-solid fa-link"></i> Tautan</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>EXTERNAL LINKS</h1>
+    </header>
+
+    <div class="container">
+        
+        <aside class="sidebar-left">
+            <div class="widget">
+                <h3><i class="fa-solid fa-server"></i> Link Status</h3>
+                <ul class="cyber-list">
+                    <li><span>MIKROTIK WIKI</span> <span style="color:#059669;">ONLINE</span></li>
+                    <li><span>CISCO NETACAD</span> <span style="color:#059669;">ONLINE</span></li>
+                    <li><span>KEMDIKBUD</span> <span style="color:#059669;">ONLINE</span></li>
+                    <li><span>PACKET TRACER</span> <span style="color:#059669;">ONLINE</span></li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3><i class="fa-solid fa-folder-tree"></i> Categories</h3>
+                <ul class="cyber-list">
+                    <li><span>PORTAL OFFICIAL</span> <span>3 NODES</span></li>
+                    <li><span>SIMULATOR</span> <span>3 NODES</span></li>
+                    <li><span>DOCUMENTATION</span> <span>5 NODES</span></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h2 class="section-title"><i class="fa-solid fa-globe" style="color: var(--accent-primary);"></i> Portal &amp; Referensi Utama</h2>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-router"></i></div>
+                            <h3>MikroTik Wiki</h3>
+                        </div>
+                        <p>Dokumentasi resmi, panduan konfigurasi RouterOS, serta penjelasan fitur-fitur MikroTik.</p>
+                    </div>
+                    <a href="https://wiki.mikrotik.com" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Buka Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="link-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h3>Cisco NetAcad</h3>
+                        </div>
+                        <p>Platform resmi Cisco untuk mempelajari jaringan, keamanan siber, dan IoT.</p>
+                    </div>
+                    <a href="https://www.netacad.com" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Buka Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="link-card">
+                    <div>
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                            <h3>Kurikulum Merdeka</h3>
+                        </div>
+                        <p>Portal resmi Kurikulum Merdeka Kemdikbud untuk mengunduh modul &amp; capaian TJKT.</p>
+                    </div>
+                    <a href="https://kurikulum.kemdikbud.go.id" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Buka Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-laptop-code" style="color: var(--accent-primary);"></i> Software &amp; Simulator Jaringan</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div>
+                        <div class="badge-free">Gratis / Edukasi</div>
+                        <div class="tool-info">
+                            <i class="fa-solid fa-network-wired"></i>
+                            <h4>Packet Tracer</h4>
+                        </div>
+                        <p>Simulator topologi Cisco tanpa memerlukan hardware fisik.</p>
+                    </div>
+                    <a href="https://www.netacad.com/courses/packet-tracer" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Unduh <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+
+                <div class="tool-card">
+                    <div>
+                        <div class="badge-free">Gratis</div>
+                        <div class="tool-info">
+                            <i class="fa-solid fa-desktop"></i>
+                            <h4>WinBox MikroTik</h4>
+                        </div>
+                        <p>Aplikasi GUI ringan untuk mengkonfigurasi RouterOS MikroTik.</p>
+                    </div>
+                    <a href="https://mikrotik.com/download" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Unduh <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+
+                <div class="tool-card">
+                    <div>
+                        <div class="badge-free">Open Source</div>
+                        <div class="tool-info">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            <h4>Wireshark</h4>
+                        </div>
+                        <p>Software penganalisis lalu lintas/paket data jaringan real-time.</p>
+                    </div>
+                    <a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener noreferrer" class="btn-link">
+                        Unduh <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2 class="section-title" style="margin-bottom: 12px;"><i class="fa-solid fa-circle-question" style="color: var(--accent-primary);"></i> FAQ // SYSTEM_QUERY</h2>
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-angle-right" style="color: var(--accent-primary);"></i> Apakah software simulator ini gratis?</h4>
+                    <p>Ya, seluruh software di atas dapat diunduh dan digunakan gratis untuk pembelajaran.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fa-solid fa-angle-right" style="color: var(--accent-primary);"></i> Cara install Cisco Packet Tracer?</h4>
+                    <p>Mendaftar akun gratis terlebih dahulu di Cisco Networking Academy lewat tombol di atas.</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h3><i class="fa-solid fa-book"></i> E-Books &amp; Docs</h3>
+                <ul class="cyber-list">
+                    <li><span>TCP/IP GUIDE</span> <span style="color:var(--accent-primary);">PDF</span></li>
+                    <li><span>LINUX COMMANDS</span> <span style="color:var(--accent-primary);">PDF</span></li>
+                    <li><span>FIBER OPTIC 101</span> <span style="color:var(--accent-primary);">PDF</span></li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3><i class="fa-solid fa-users"></i> Community</h3>
+                <ul class="cyber-list">
+                    <li><span>MIKROTIK ID</span> <span style="color:var(--accent-tertiary);">FORUM</span></li>
+                    <li><span>KASKUS COMPUTING</span> <span style="color:var(--accent-tertiary);">FORUM</span></li>
+                    <li><span>REDDIT NETWORKING</span> <span style="color:var(--accent-tertiary);">SUB</span></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Edukasi TJKT // ALL_SYSTEMS_OPERATIONAL</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Script untuk toggle menu garis 3
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Menutup menu jika mengklik di luar menu
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+
+            // Script bawaan external links
+            const externalLinks = document.querySelectorAll('.btn-link');
+            externalLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    console.log(`[SYSTEM] Navigating to target: ${link.href}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
